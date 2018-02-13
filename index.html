@@ -115,8 +115,6 @@ map.on('load', function() {
       geocoder.query(search);
       geocoder.on('result', function(ev) {
         map.getSource('single-point').setData(ev.result.geometry);
-        map.setZoom(16);
-        map.setPitch(45);
       });
     }
 });
