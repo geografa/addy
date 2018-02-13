@@ -29,29 +29,38 @@
         background: #fff;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;
+        max-width: 200px;
     }
 </style>
 
 <div id='map'></div>
 <div id='menu'>
-    <input id='basic' type='radio' name='rtoggle' value='basic'>
-    <label for='basic'>basic</label>
-    <input id='streets' type='radio' name='rtoggle' value='streets' checked='checked'>
-    <label for='streets'>streets</label>
-    <input id='bright' type='radio' name='rtoggle' value='bright'>
-    <label for='bright'>bright</label>
-    <input id='light' type='radio' name='rtoggle' value='light'>
-    <label for='light'>light</label>
-    <input id='dark' type='radio' name='rtoggle' value='dark'>
-    <label for='dark'>dark</label>
-    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
-    <label for='satellite'>satellite</label>
+    <input id='ciuada16f001f2ho8e6smzjss' type='radio' name='rtoggle' value='streets' checked='checked'>
+    <label for='streets'>Mapbox Streets</label><br>
+    <input id='cjcw7qyt316bv2rqy4z88mnii' type='radio' name='rtoggle' value='Le Shine'>
+    <label for='Le Shine'>Le Shine</label><br>
+    <input id='ciof7kbzs002mahnm9ju6qjn0' type='radio' name='rtoggle' value='Runner'>
+    <label for='Runner'>Runner</label><br>
+    <input id='cj4a864yh11cg2sqtexzm9qc0' type='radio' name='rtoggle' value='North Star'>
+    <label for='North Star'>North Star</label><br>
+    <input id='cj8osqo2z91oz2rpps52rxe1v' type='radio' name='rtoggle' value='Scenic'>
+    <label for='Scenic'>Scenic</label><br>
+    <input id='cja1so8j804gt2spohx34fpzz' type='radio' name='rtoggle' value='Odyssey'>
+    <label for='Odyssey'>Odyssey</label><br>
+    <input id='cj6lscjta8em92slk4zraoirj' type='radio' name='rtoggle' value='Standard'>
+    <label for='Standard'>Standard</label><br>
+    <input id='cj686227613282sns30deqrlq' type='radio' name='rtoggle' value='Terminal'>
+    <label for='Terminal'>Terminal</label><br>
+    <input id='cj1v81h91000d2sql97n8vhdp' type='radio' name='rtoggle' value='Colourlovers'>
+    <label for='Colourlovers'>Colourlovers</label><br>
+    <input id='cigv5w3fp0001bhly8c6lv9in' type='radio' name='rtoggle' value='satellite'>
+    <label for='satellite'>Satellite</label><br>
 </div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2pka3k3anpwMDBycTM0cWg3YnpiOW1yZSJ9.msQZ437kHXUN4p09ywU6rg';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/grafa/ciuada16f001f2ho8e6smzjss',
     center: [-96, 37.8],
     zoom: 3
 });
@@ -68,7 +77,7 @@ var inputs = layerList.getElementsByTagName('input');
 
 function switchLayer(layer) {
     var layerId = layer.target.id;
-    map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+    map.setStyle('mapbox://styles/grafa/' + layerId);
 }
 
 for (var i = 0; i < inputs.length; i++) {
