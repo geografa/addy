@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8' />
-    <title>Geocode and Set Style</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
-</head>
-<body>
-
+<meta charset="utf-8" />
+<title>Add a geocoder</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
 <style>
-#geocoder-container > div {
-    min-width:50%;
-    margin-left:25%;
-}
-</style>
-
-<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    #geocoder-container > div {
+        min-width:50%;
+        margin-left:25%;
+    }
     #menu {
         position: absolute;
         background: #fff;
@@ -44,37 +34,47 @@
         background: #fff;
     }
 </style>
-
-<div id='map'></div>
-<pre id='info'></pre>
-<div id='menu'>
-    <input id='ciuada16f001f2ho8e6smzjss' type='radio' name='rtoggle' value='streets' checked='checked'>
-    <label for='streets'>Mapbox Streets</label><br>
-    <input id='cjcw7qyt316bv2rqy4z88mnii' type='radio' name='rtoggle' value='Le Shine'>
-    <label for='Le Shine'>Le Shine</label><br>
-    <input id='ciof7kbzs002mahnm9ju6qjn0' type='radio' name='rtoggle' value='Runner'>
-    <label for='Runner'>Runner</label><br>
-    <input id='cj4a864yh11cg2sqtexzm9qc0' type='radio' name='rtoggle' value='North Star'>
-    <label for='North Star'>North Star</label><br>
-    <input id='cj8osqo2z91oz2rpps52rxe1v' type='radio' name='rtoggle' value='Scenic'>
-    <label for='Scenic'>Scenic</label><br>
-    <input id='cja1so8j804gt2spohx34fpzz' type='radio' name='rtoggle' value='Odyssey'>
-    <label for='Odyssey'>Odyssey</label><br>
-    <input id='cj6lscjta8em92slk4zraoirj' type='radio' name='rtoggle' value='Standard'>
-    <label for='Standard'>Standard</label><br>
-    <input id='cj686227613282sns30deqrlq' type='radio' name='rtoggle' value='Terminal'>
-    <label for='Terminal'>Terminal</label><br>
-    <input id='cj1v81h91000d2sql97n8vhdp' type='radio' name='rtoggle' value='Colourlovers'>
-    <label for='Colourlovers'>Colourlovers</label><br>
-    <input id='cigv5w3fp0001bhly8c6lv9in' type='radio' name='rtoggle' value='satellite'>
-    <label for='satellite'>Satellite</label><br>
+</head>
+<body>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+    type="text/css"
+/>
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<div id="map"></div>
+<pre id="info"></pre>
+<div id="menu">
+    <input id="ckeae0gbx03wg19qdx6w2wcgx" type="radio" name="rtoggle" value="streets" checked="checked">
+    <label for="streets">Mapbox Streets</label><br>
+    <input id="cjcw7qyt316bv2rqy4z88mnii" type="radio" name="rtoggle" value="Le Shine">
+    <label for="Le Shine">Le Shine</label><br>
+    <input id="ciof7kbzs002mahnm9ju6qjn0" type="radio" name="rtoggle" value="Runner">
+    <label for="Runner">Runner</label><br>
+    <input id="cj4a864yh11cg2sqtexzm9qc0" type="radio" name="rtoggle" value="North Star">
+    <label for="North Star">North Star</label><br>
+    <input id="cj8osqo2z91oz2rpps52rxe1v" type="radio" name="rtoggle" value="Scenic">
+    <label for="Scenic">Scenic</label><br>
+    <input id="cja1so8j804gt2spohx34fpzz" type="radio" name="rtoggle" value="Odyssey">
+    <label for="Odyssey">Odyssey</label><br>
+    <input id="cj6lscjta8em92slk4zraoirj" type="radio" name="rtoggle" value="Standard">
+    <label for="Standard">Standard</label><br>
+    <input id="cj686227613282sns30deqrlq" type="radio" name="rtoggle" value="Terminal">
+    <label for="Terminal">Terminal</label><br>
+    <input id="cj1v81h91000d2sql97n8vhdp" type="radio" name="rtoggle" value="Colourlovers">
+    <label for="Colourlovers">Colourlovers</label><br>
+    <input id="cigv5w3fp0001bhly8c6lv9in" type="radio" name="rtoggle" value="satellite">
+    <label for="satellite">Satellite</label><br>
 </div>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2pka3k3anpwMDBycTM0cWg3YnpiOW1yZSJ9.msQZ437kHXUN4p09ywU6rg';
+mapboxgl.accessToken = "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2pka3k3anpwMDBycTM0cWg3YnpiOW1yZSJ9.msQZ437kHXUN4p09ywU6rg";
 var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/grafa/ciuada16f001f2ho8e6smzjss',
+    container: "map",
+    style: "mapbox://styles/grafa/ckeae0gbx03wg19qdx6w2wcgx",
     center: [-96, 37.8],
     zoom: 3
 });
@@ -97,10 +97,11 @@ var map = new mapboxgl.Map({
                 type: "Point",
                 coordinates: [lng, lat]
             },
-            place_name: 'Lat: ' + lat + ' Lng: ' + lng, // eslint-disable-line camelcase
-            place_type: ['coordinate'], // eslint-disable-line camelcase
+            place_name: "Lat: " + lat + " Lng: " + lng, // eslint-disable-line camelcase
+            place_type: ["coordinate"], // eslint-disable-line camelcase
             properties: {},
-            type: 'Feature'
+            type: "Feature",
+
         };
     }
 
@@ -130,34 +131,198 @@ var map = new mapboxgl.Map({
 var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     localGeocoder: coordinatesGeocoder,
-    zoom: 4,
+    zoom: 11,
     placeholder: "Try: -40, 170",
-    mapboxgl: mapboxgl
+    mapboxgl: mapboxgl,
+    marker: {
+        color: "rgba(0, 30, 84, 0.78)"
+    }
 });
 
 map.addControl(geocoder);
 
-var layerList = document.getElementById('menu');
-var inputs = layerList.getElementsByTagName('input');
+let gcPopup = new mapboxgl.Popup({
+//   offset: popupOffsets
+});
+let destPopup = new mapboxgl.Popup({
+//   offset: popupOffsets
+});
+
+geocoder.on('result', geoPopup)
+
+function geoPopup() {
+    let popupCoords = geocoder.mapMarker.getLngLat().toArray();
+    geocoder.mapMarker.setLngLat(popupCoords)
+        .setPopup(gcPopup.setHTML("<h3><a href='geo://" + popupCoords[1] + "," + popupCoords[0] + "'>Start Navigation in 1Tap</a></h3>" + 
+        '🚗 <a href="javascript:void(0)" onclick="getLocation(getRoute)";return false;>Directions</a>'));
+    
+    geocoder.mapMarker.addTo(map);
+}
+
+// Add geolocate control to the map.
+map.addControl(
+    new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+    trackUserLocation: true
+    })
+);
+
+// geolocation
+const getLocation = (callback) => {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let startLon = position.coords.longitude;
+    let startLat = position.coords.latitude;
+    callback(startLon,startLat);
+  });
+};
+
+// do directions stuff
+// directions
+const getRoute = (startLon,startLat,dest) => {
+    console.log(dest);
+  var dest = gcPopup.getLngLat();
+  let url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + startLon + ',' + startLat + ';' + dest.lng + ',' + dest.lat + '?geometries=geojson&overview=full&access_token=' + mapboxgl.accessToken;
+  let req = new XMLHttpRequest();
+  req.responseType = 'json';
+  req.open('GET', url, true);
+  req.onload  = function() {
+    let data = req.response.routes[0];
+    let route = data.geometry.coordinates;
+    let geojsonRoute = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": route
+      }
+    };
+    let geojsonStart = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [startLon,startLat]
+      }
+    };
+    if (map.getSource('route')) {
+      map.getSource('route').setData(geojsonRoute);
+      map.getSource('start').setData(geojsonStart);
+    } else {
+      map.addLayer({
+        "id": "start",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data": geojsonStart
+        },
+        "layout": {
+            "icon-image": "circle-stroked-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+      },'waterway-label');
+      map.addLayer({
+        "id": "route",
+        "type": "line",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "LineString",
+              "coordinates": route
+            }
+          }
+        },
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        "paint": {
+          "line-color": "rgba(0, 30, 84, 0.78)",
+          "line-width": 10,
+          "line-opacity": 0.75
+        }
+      },'waterway-label');
+      map.addLayer({
+            id: 'routearrows',
+            type: 'symbol',
+            source: 'route',
+            layout: {
+              'symbol-placement': 'line',
+              'text-field': '▶',
+              'text-size': {
+                base: 1,
+                stops: [[12, 18], [22, 60]]
+              },
+              'symbol-spacing': {
+                base: 1,
+                stops: [[12, 30], [22, 160]]
+              },
+              'text-keep-upright': false
+            },
+            paint: {
+              'text-color': '#fff',
+              'text-halo-color': 'hsl(55, 11%, 96%)',
+            //   'text-halo-width': 3
+            }
+        }, 'waterway-label');
+
+    };
+
+    let coordinates = geojsonRoute.geometry.coordinates;
+
+    // Pass the first coordinates in the LineString to `lngLatBounds` &
+    // wrap each coordinate pair in `extend` to include them in the bounds
+    // result. A letiation of this technique could be applied to zooming
+    // to the bounds of multiple Points or Polygon geomteries - it just
+    // requires wrapping all the coordinates with the extend method.
+    let bounds = coordinates.reduce(function(bounds, coord) {
+        return bounds.extend(coord);
+    }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
+    map.fitBounds(bounds, {
+        padding: 20
+    });
+
+    destPopup.setLngLat([startLon,startLat])
+      .setHTML('<span class="duration">' + Math.floor(data.duration/60) + ' min 🚗💨</span>');
+    destPopup.addTo(map);
+  };
+  req.send();
+};
+
+
+// layer manager
+var layerList = document.getElementById("menu");
+var inputs = layerList.getElementsByTagName("input");
 
 function switchLayer(layer) {
     var layerId = layer.target.id;
-    map.setStyle('mapbox://styles/grafa/' + layerId);
+    map.setStyle("mapbox://styles/grafa/" + layerId);
 }
 
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
-map.on('load', function() {
+map.on("load", function() {
     // Listen for the `geocoder.input` event that is triggered when a user
     // makes a selection and add a symbol that matches the result.
-    geocoder.on('result', function(ev) {
-        document.getElementById('info').innerHTML =
-        JSON.stringify(ev.result.geometry.coordinates) + '<br />' +
-        JSON.stringify(ev.result.place_name);
-        console.log(ev.result);
+    geocoder.on("result", function(ev) {
+        c = ev.result.geometry.coordinates;
+        document.getElementById("info").innerHTML =
+        "<a href='geo:" + c[1] + "," + c[0] + "'>"+ ev.result.geometry.coordinates + "</a><br />" +
+        ev.result.place_name;
+        console.log(ev.result.geometry.coordinates);
     });
+
+// console.log(JSON.stringify(polyline.decode(line2,5).map(c => [c[1],c[0]])));
 
     if (window.location.hash) {
       var search = decodeURIComponent(window.location.hash.split('#search=')[1]);
