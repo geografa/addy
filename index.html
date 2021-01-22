@@ -94,7 +94,9 @@
 <div id="map"></div>
 <pre id="info"></pre>
 <div id="menu">
-    <input id="ckeae0gbx03wg19qdx6w2wcgx" type="radio" name="rtoggle" value="streets" checked="checked">
+    <input id="ckjixv8hq03d019qp0ddf44wn" type="radio" name="rtoggle" value="streets" checked="checked">
+    <label for="streets">Mapbox Satellite Streets</label><br>
+    <input id="ckeae0gbx03wg19qdx6w2wcgx" type="radio" name="rtoggle" value="streets">
     <label for="streets">Mapbox Streets</label><br>
     <input id="cjcw7qyt316bv2rqy4z88mnii" type="radio" name="rtoggle" value="Le Shine">
     <label for="Le Shine">Le Shine</label><br>
@@ -177,11 +179,11 @@ var map = new mapboxgl.Map({
 var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     localGeocoder: coordinatesGeocoder,
-    zoom: 11,
+    zoom: 14,
     placeholder: "Try: -40, 170",
     mapboxgl: mapboxgl,
     marker: {
-        color: "rgba(0, 30, 84, 0.78)"
+        color: "rgba(255, 153, 0, 0.85)"
     }
 });
 
@@ -201,7 +203,6 @@ function geoPopup() {
     geocoder.mapMarker.setLngLat(popupCoords)
         .setPopup(gcPopup.setHTML("<h3><a href='geo://" + popupCoords[1] + "," + popupCoords[0] + "'>Start Navigation in 1Tap</a></h3>" + 
         '🚗 <a href="javascript:void(0)" onclick="getLocation(getRoute)";return false;>View route</a>'));
-    
     geocoder.mapMarker.addTo(map);
 }
 
@@ -364,7 +365,7 @@ map.on("load", function() {
         c = ev.result.geometry.coordinates;
         document.getElementById("info").innerHTML =
         "<a href='geo:" + c[1] + "," + c[0] + "'>"+ ev.result.geometry.coordinates + "</a><br />" +
-        ev.result.place_name;
+        ev.result.place_name + " | <a href='https://www.openstreetmap.org/#map=19/" + c[1] + "/" + c[0] +"'>OSM</a>";
         console.log(ev.result.geometry.coordinates);
     });
 
