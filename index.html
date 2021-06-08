@@ -199,9 +199,11 @@ let destPopup = new mapboxgl.Popup({
 geocoder.on('result', geoPopup)
 
 function geoPopup() {
+    let addyEncoded = encodeURI(geocoder.inputString);
     let popupCoords = geocoder.mapMarker.getLngLat().toArray();
     geocoder.mapMarker.setLngLat(popupCoords)
         .setPopup(gcPopup.setHTML("<h3><a href='geo://" + popupCoords[1] + "," + popupCoords[0] + "'>Start Navigation in 1Tap</a></h3>" + 
+        "<h3><a href='https://straightaway.app.link/demo/nav?address=" + addyEncoded + "'>Start Navigation in Straightaway</a></h3>" + 
         '🚗 <a href="javascript:void(0)" onclick="getLocation(getRoute)";return false;>View route</a>'));
     geocoder.mapMarker.addTo(map);
 }
